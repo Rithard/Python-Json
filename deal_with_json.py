@@ -20,16 +20,20 @@ def read_json(json_lists):
     for json_dir in json_lists:
         print(json_dir)
         with open(json_dir, 'r', encoding='utf-8') as f:
-            info= list()
+            cus_info= list()
+            list_info = list()
             for each_line in f.readlines():
                 py_data = json.loads(each_line)
                 cus_lists = py_data['result']['list']
-                for v, cus_msg in enumerate(cus_lists):
-                    info.append(cus_msg['ftm'])   #下单时间
-                    info.append(cus_msg['oid'])   #订单编号
-                    info.append(cus_msg['nam'])   #客户姓名
-                    info.append(cus_msg['fad'])   #客户地址
-                    info.append(cus_msg['olb'])   #订单状态
+                if cus_lists not in list_info:
+                    list_info.append(cus_lists)
+            for cus_list in list_info:    
+                for cus_msg in cus_list:
+                    cus_info.append(cus_msg['ftm'])   #下单时间
+                    cus_info.append(cus_msg['oid'])   #订单编号
+                    cus_info.append(cus_msg['nam'])   #客户姓名
+                    cus_info.append(cus_msg['fad'])   #客户地址
+                    cus_info.append(cus_msg['olb'])   #订单状态
     return info
 
 

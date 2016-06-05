@@ -18,7 +18,6 @@ def get_filename():
 
 def read_json(json_lists):
     for json_dir in json_lists:
-        print(json_dir)
         with open(json_dir, 'r', encoding='utf-8') as f:
             cus_info= list()
             list_info = list()
